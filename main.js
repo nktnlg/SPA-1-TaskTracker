@@ -5,7 +5,8 @@ function saveTask(event){
         name: document.getElementById('new-task-name-input').value,
         description: document.getElementById('new-task-description').innerHTML,
         urgency: document.getElementById('new-task-urgency-select').value
-    }
+    }  
+    
 
     if(localStorage.getItem('tasks') === null) {
         const tasks = [];
