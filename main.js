@@ -23,6 +23,15 @@ function saveTask(event){
     event.preventDefault();
 };
 
+function deleteTask(id){
+    const tasks = JSON.parse(localStorage.getItem('tasks'));
+    const newTasks = tasks.filter(
+        task => task.id != id
+    )
+    localStorage.setItem('tasks', JSON.stringify(newTasks))
+    fetchTasks();
+};
+
 function fetchTasks (){
     const tasks = JSON.parse(localStorage.getItem('tasks'));
     
@@ -52,11 +61,3 @@ function fetchTasks (){
     }
 };
 
-function deleteTask(id){
-    const tasks = JSON.parse(localStorage.getItem('tasks'));
-    const newTasks = tasks.filter(
-        task => task.id != id
-    )
-    localStorage.setItem('tasks', JSON.stringify(newTasks))
-    fetchTasks();
-};
