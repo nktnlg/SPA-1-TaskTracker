@@ -7,10 +7,6 @@ function saveTask(event){
         urgency: document.getElementById('new-task-urgency-select').value
     }  
 
-
-    
-
-
     if(localStorage.getItem('tasks') === null) {
         const tasks = [];
         tasks.push(newTask);
@@ -23,6 +19,7 @@ function saveTask(event){
 
     fetchTasks();
     event.preventDefault();
+    
 };
 
 function fetchTasks (){
