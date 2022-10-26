@@ -6,6 +6,7 @@ function saveTask(event){
         description: document.getElementById('new-task-description').innerHTML,
         urgency: document.getElementById('new-task-urgency-select').value
     }  
+
     
 
     if(localStorage.getItem('tasks') === null) {
