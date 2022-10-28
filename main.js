@@ -17,7 +17,29 @@ function saveTask(event){
         localStorage.setItem('tasks', JSON.stringify(tasks))     
     }
 
-    fetchTasks();
+    let highUrgenceList = document.getElementById('urgent-high-tasks');
+    let averageUrgenceList = document.getElementById('urgent-average-tasks');
+    let lowUrgenceList = document.getElementById('urgent-low-tasks');
+    
+    switch(newTask.urgency){
+        case 'High':
+        highUrgenceList.innerHTML += '<div class="relative"><button class="peer absolute right-1 top-1" onclick="deleteTask(\''+ newTask.id +'\')"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16"> <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/> </svg></button><div id="urgent-high-1"class="items-center h-16 mb-2 p-2.5 shadow-lg rounded-lg bg-gray-100 text-gray-700 border-2 break-all overflow-hidden peer-hover:bg-white hover:bg-white hover:text-gray-700" >' + newTask.name + '</div></div>'
+        break;
+        case 'Average':
+        averageUrgenceList.innerHTML += '<div class="relative"><button class="peer absolute right-1 top-1" onclick="deleteTask(\''+ newTask.id +'\')"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16"> <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/> </svg></button><div id="urgent-high-1"class="items-center h-16 mb-2 p-2.5 shadow-lg rounded-lg bg-gray-100 text-gray-700 border-2 break-all overflow-hidden peer-hover:bg-white hover:bg-white hover:text-gray-700" >' + newTask.name + '</div></div>'
+        break;
+        case 'Low':
+        lowUrgenceList.innerHTML += '<div class="relative"><button class="peer absolute right-1 top-1" onclick="deleteTask(\''+ newTask.id +'\')"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16"> <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/> </svg></button><div id="urgent-high-1"class="items-center h-16 mb-2 p-2.5 shadow-lg rounded-lg bg-gray-100 text-gray-700 border-2 break-all overflow-hidden peer-hover:bg-white hover:bg-white hover:text-gray-700" >' + newTask.name + '</div></div>'
+        break;
+        default:
+        break;
+    };
+
+    //fetchTasks();
+    document.getElementById('create-tasks-card-form').reset();
+    document.getElementById('new-task-description').innerHTML = '';
+
+
     event.preventDefault();
     
 };
@@ -32,7 +54,7 @@ function deleteTask(id){
 };
 
 function fetchTasks (){
-    const tasks = JSON.parse(localStorage.getItem('tasks'));
+    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
     
     console.log(tasks)
     const highUrgence = tasks.filter(task => task.urgency == 'High');
